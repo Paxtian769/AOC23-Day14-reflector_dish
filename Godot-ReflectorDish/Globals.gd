@@ -4,17 +4,15 @@ var rows: int=0
 var total_weight: int = 0
 
 signal total_weight_changed
-signal start_simulation
+signal change_direction
 
 
 func _ready():
 	total_weight = 0
 
 
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		start_simulation.emit()
-		print(rows)
+func _set_direction(direction: String):
+	change_direction.emit(direction)
 
 
 func add_to_rows():

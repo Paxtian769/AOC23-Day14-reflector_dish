@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c41hmfjvb63xc"]
+[gd_scene load_steps=11 format=3 uid="uid://c41hmfjvb63xc"]
 
 [ext_resource type="Script" path="res://Scenes/Setup.gd" id="1_7gxv0"]
 [ext_resource type="PackedScene" uid="uid://d24tlmu66r30b" path="res://Scenes/ground.tscn" id="2_xa75p"]
@@ -18,6 +18,12 @@ background_mode = 2
 sky = SubResource("Sky_xbrwq")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bem00"]
+size = Vector3(1, 3, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o4m6a"]
+size = Vector3(10, 3, 1)
 
 [node name="TestWorld" type="Node3D"]
 
@@ -58,3 +64,72 @@ anchor_bottom = 0.03
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Total Weight: "
+
+[node name="NorthButton" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.5
+anchor_right = 0.077
+anchor_bottom = 0.5
+offset_top = -24.5
+offset_right = 86.0
+offset_bottom = 24.5
+grow_vertical = 2
+text = "North"
+
+[node name="EastButton" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.12
+anchor_top = 0.6
+anchor_right = 0.12
+anchor_bottom = 0.6
+offset_top = -24.5
+offset_right = 86.0
+offset_bottom = 24.5
+grow_vertical = 2
+text = "East"
+
+[node name="WestButton" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.6
+anchor_right = 0.03
+anchor_bottom = 0.6
+offset_top = -24.5
+offset_right = 86.0
+offset_bottom = 24.5
+grow_vertical = 2
+text = "West"
+
+[node name="SouthButton" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.7
+anchor_right = 0.075
+anchor_bottom = 0.7
+offset_top = -24.5
+offset_right = 86.0
+offset_bottom = 24.5
+grow_vertical = 2
+text = "South
+"
+
+[node name="EastBarrier" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EastBarrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_bem00")
+
+[node name="WestBarrier" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WestBarrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_bem00")
+
+[node name="SouthBarrier" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SouthBarrier"]
+shape = SubResource("BoxShape3D_o4m6a")
