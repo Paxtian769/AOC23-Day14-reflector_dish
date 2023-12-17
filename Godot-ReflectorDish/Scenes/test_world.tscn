@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://c41hmfjvb63xc"]
+
+[ext_resource type="Script" path="res://Scenes/Setup.gd" id="1_7gxv0"]
+[ext_resource type="PackedScene" uid="uid://d24tlmu66r30b" path="res://Scenes/ground.tscn" id="2_xa75p"]
+[ext_resource type="Script" path="res://camera.gd" id="4_3auqd"]
+[ext_resource type="PackedScene" uid="uid://7rkv4wtf60u2" path="res://Scenes/end_shape.tscn" id="4_bm2xh"]
+[ext_resource type="Script" path="res://Scenes/CanvasLayer.gd" id="6_abe2r"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_at1qq"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_xbrwq"]
+sky_material = SubResource("ProceduralSkyMaterial_at1qq")
+
+[sub_resource type="Environment" id="Environment_8jw4t"]
+background_mode = 2
+sky = SubResource("Sky_xbrwq")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="TestWorld" type="Node3D"]
+
+[node name="Setup" type="Node" parent="."]
+script = ExtResource("1_7gxv0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8jw4t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.873023, -0.0513632, 0.484966, 0.45133, -0.461819, 0.76356, 0.184748, 0.885486, 0.42636, 0, 14.3878, 10.2868)
+shadow_enabled = true
+
+[node name="Ground" parent="." instance=ExtResource("2_xa75p")]
+
+[node name="EndShape" parent="." instance=ExtResource("4_bm2xh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="MovingRocks" type="Node3D" parent="."]
+
+[node name="StationaryRocks" type="Node3D" parent="."]
+
+[node name="RowCounters" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 7, 7)
+script = ExtResource("4_3auqd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_abe2r")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.03
+anchor_right = 0.03
+anchor_bottom = 0.03
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Total Weight: "

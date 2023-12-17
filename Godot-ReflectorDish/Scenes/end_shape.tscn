@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://7rkv4wtf60u2"]
+
+[ext_resource type="Script" path="res://Scenes/end_shape.gd" id="1_733v0"]
+[ext_resource type="Material" uid="uid://dwes6lqw6f11s" path="res://Materials/light_grey_3d.tres" id="1_cwsf3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e4l43"]
+size = Vector3(10, 3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_17t2s"]
+material = ExtResource("1_cwsf3")
+size = Vector3(10, 3, 1)
+
+[node name="EndShape" type="StaticBody3D"]
+script = ExtResource("1_733v0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_e4l43")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_17t2s")

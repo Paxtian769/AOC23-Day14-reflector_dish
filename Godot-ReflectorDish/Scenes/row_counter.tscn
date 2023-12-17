@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjtoi0n77a448"]
+
+[ext_resource type="Script" path="res://Scenes/row_counter.gd" id="1_wh8ge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_355bd"]
+size = Vector3(10, 1, 0.6)
+
+[node name="RowCounter" type="Area3D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_wh8ge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_355bd")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 5.38505, 0, 0)
+text = "Row #, Rocks  = "
+font_size = 128
+outline_size = 36
+horizontal_alignment = 0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

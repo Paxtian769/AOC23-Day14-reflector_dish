@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1ynq4esfco0q"]
+
+[ext_resource type="Script" path="res://MovingRock.gd" id="1_33jxj"]
+[ext_resource type="Material" uid="uid://i0gvp4q6fv6n" path="res://Materials/brown_moving_rock_material_3d.tres" id="2_ibbxp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qvwnq"]
+margin = 0.1
+
+[sub_resource type="SphereMesh" id="SphereMesh_05xtu"]
+material = ExtResource("2_ibbxp")
+
+[node name="MovingRock" type="CharacterBody3D" groups=["MovingRock"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_33jxj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_qvwnq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_05xtu")
